@@ -1,11 +1,11 @@
 'use strict';
-const common = require('../common');
-const assert = require('assert');
+var common = require('../common');
+var assert = require('assert');
 
-const StreamWrap = require('../../lib/_stream_wrap');
-const Duplex = require('../../').Duplex;
+var StreamWrap = require('../../lib/_stream_wrap');
+var Duplex = require('../../').Duplex;
 
-const stream = new Duplex({
+var stream = new Duplex({
   read: function() {
   },
   write: function() {
@@ -14,7 +14,7 @@ const stream = new Duplex({
 
 stream.setEncoding('ascii');
 
-const wrap = new StreamWrap(stream);
+var wrap = new StreamWrap(stream);
 
 wrap.on('error', common.mustCall(function(err) {
   assert(/StringDecoder/.test(err.message));

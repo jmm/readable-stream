@@ -2,11 +2,10 @@
 var common = require('../common');
 var stream = require('../../');
 
-var r = new stream({
-  read: noop});
+var r = new require('stream').Stream();
 r.listenerCount = undefined;
 
-var w = new stream();
+var w = new require('stream').Stream();
 w.listenerCount = undefined;
 
 w.on('pipe', function() {

@@ -1,14 +1,14 @@
 'use strict';
-const common = require('../common');
-const assert = require('assert');
+var common = require('../common');
+var assert = require('assert');
 
-const Readable = require('../../').Readable;
+var Readable = require('../../').Readable;
 
 test1();
 test2();
 
 function test1() {
-  const r = new Readable();
+  var r = new Readable();
 
   // should not end when we get a Buffer(0) or '' as the _read result
   // that just means that there is *temporarily* no data, but to go
@@ -20,9 +20,9 @@ function test1() {
   // r.read(0) again later, otherwise there is no more work being done
   // and the process just exits.
 
-  const buf = Buffer(5).fill('x');
+  var buf = Buffer(5).fill('x');
   let reads = 5;
-  const timeout = common.platformTimeout(50);
+  var timeout = common.platformTimeout(50);
   r._read = function(n) {
     switch (reads--) {
       case 0:
@@ -51,7 +51,7 @@ function test1() {
     }
   };
 
-  const results = [];
+  var results = [];
   function flow() {
     let chunk;
     while (null !== (chunk = r.read()))

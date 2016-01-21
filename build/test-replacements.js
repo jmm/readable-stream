@@ -6,6 +6,8 @@ const altForEachImplReplacement = require('./common-replacements').altForEachImp
     require('./common-replacements').objectKeysDefine
     , objectKeysReplacement =
     require('./common-replacements').objectKeysReplacement
+    , constReplacement =
+    require('./common-replacements').constReplacement
 
 module.exports.all = [
     [
@@ -30,6 +32,7 @@ module.exports.all = [
         /Stream.(Readable|Writable|Duplex|Transform|PassThrough)/g
       , 'require(\'../../\').$1'
     ]
+  , constReplacement
 
 ]
 
@@ -63,6 +66,7 @@ module.exports['common.js'] = [
   , objectKeysReplacement
   , altForEachImplReplacement
   , altForEachUseReplacement
+  , constReplacement
 
   , [
         /(exports.mustCall[\s\S]*)/m
@@ -138,6 +142,10 @@ module.exports['common.js'] = [
     [
       /var regexp = `\^\(\\\\w\+\)\\\\s\+\\\\s\$\{port\}\/\$\{protocol\}\\\\s`;/,
       `var regexp = '^(\\w+)\\s+\\s' + port + '/' + protocol + '\\s';`
+    ],
+    [
+        /require\(['"]stream['"]\)/g
+      , 'require(\'../\')'
     ]
 ]
 

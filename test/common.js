@@ -29,10 +29,10 @@ var fs = require('fs');
 var assert = require('assert');
 var os = require('os');
 var child_process = require('child_process');
-const stream = require('stream');
-const util = require('util');
+var stream = require('../');
+var util = require('util');
 
-const testRoot = path.resolve(process.env.NODE_TEST_DIR ||
+var testRoot = path.resolve(process.env.NODE_TEST_DIR ||
                               path.dirname(__filename));
 
 exports.testDir = path.dirname(__filename);
@@ -229,7 +229,7 @@ exports.hasIPv6 = objectKeys(ifaces).some(function(name) {
 
 function protoCtrChain(o) {
   var result = [];
-  for (; o; o = o.__proto__) { result.push(o.constructor); }
+  for (; o; o = o.__proto__) { result.push(o.varructor); }
   return result.join();
 }
 
@@ -291,7 +291,7 @@ exports.platformTimeout = function(ms) {
   if (process.arch !== 'arm')
     return ms;
 
-  const armv = process.config.variables.arm_version;
+  var armv = process.config.variables.arm_version;
 
   if (armv === '6')
     return 7 * ms;  // ARMv6
@@ -309,7 +309,7 @@ var knownGlobals = [setTimeout,
                     clearInterval,
                     clearImmediate,
                     console,
-                    constructor, // Enumerable in V8 3.21.
+                    varructor, // Enumerable in V8 3.21.
                     Buffer,
                     process,
                     global];
@@ -548,7 +548,7 @@ exports.nodeProcessAborted = function nodeProcessAborted(exitCode, signal) {
   // greater than 256, and thus the exit code emitted with the 'exit'
   // event is null and the signal is set to either SIGILL, SIGTRAP,
   // or SIGABRT (depending on the compiler).
-  const expectedSignals = ['SIGILL', 'SIGTRAP', 'SIGABRT'];
+  var expectedSignals = ['SIGILL', 'SIGTRAP', 'SIGABRT'];
 
   // On Windows, v8's base::OS::Abort triggers an access violation,
   // which corresponds to exit code 3221225477 (0xC0000005)
