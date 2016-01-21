@@ -17,4 +17,4 @@ r.on('error', common.mustCall(noop));
 w.on('error', common.mustCall(noop));
 r.pipe(w);
 
-function noop() {};
+function noop() {}
