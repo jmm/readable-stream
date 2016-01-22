@@ -21,7 +21,7 @@ function test1() {
   // and the process just exits.
 
   var buf = Buffer(5).fill('x');
-  let reads = 5;
+  var reads = 5;
   var timeout = common.platformTimeout(50);
   r._read = function(n) {
     switch (reads--) {
@@ -53,7 +53,7 @@ function test1() {
 
   var results = [];
   function flow() {
-    let chunk;
+    var chunk;
     while (null !== (chunk = r.read()))
       results.push(chunk + '');
   }

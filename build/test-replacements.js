@@ -146,6 +146,16 @@ module.exports['common.js'] = [
     [
         /require\(['"]stream['"]\)/g
       , 'require(\'../\')'
+    ],
+    [/forEach\(data, line => \{\n\s+this\.emit\('data', line \+ '\\n'\);\n\s+\}\);/m,
+    `var self = this;
+    forEach(data, function(line) {
+      self.emit('data', line + '\\n');
+    });`
+  ],
+    [
+      /(varructor,)/,
+      '// $1'
     ]
 ]
 
@@ -201,14 +211,8 @@ module.exports['test-stream-unshift-read-race.js'] = [
 
 module.exports['test-stream-pipe-without-listenerCount.js'] = [
   [
-    /const r \= new require\(\'stream'\)\.Stream\(\);/,
-    'var r = new stream({\n'
-  + '  read: noop'
-  + '});'
-  ],
-  [
-    /const w \= new require\('stream'\)\.Stream\(\);/,
-    'var w = new stream();'
+    /require\(\'stream\'\)/g,
+    'stream'
   ],
   [
     /const /g,
@@ -221,4 +225,8 @@ module.exports['test-stream-pipe-cleanup-pause.js'] = [
     /const /g,
     'var '
   ]
+]
+module.exports['test-stream2-readable-empty-buffer-no-eof.js'] = [[
+  /let /g,
+  'var ']
 ]

@@ -309,7 +309,7 @@ var knownGlobals = [setTimeout,
                     clearInterval,
                     clearImmediate,
                     console,
-                    varructor, // Enumerable in V8 3.21.
+                    // varructor, // Enumerable in V8 3.21.
                     Buffer,
                     process,
                     global];
@@ -521,8 +521,9 @@ exports.fail = function(msg) {
 // A stream to push an array into a REPL
 function ArrayStream() {
   this.run = function(data) {
-    forEach(data, line => {
-      this.emit('data', line + '\n');
+    var self = this;
+    forEach(data, function(line) {
+      self.emit('data', line + '\n');
     });
   };
 }
