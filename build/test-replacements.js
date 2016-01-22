@@ -156,7 +156,12 @@ module.exports['common.js'] = [
     [
       /(varructor,)/,
       '// $1'
-    ]
+    ],
+    [
+    /^var util = require\('util'\);/m
+  ,   '\n/*<replacement>*/\nvar util = require(\'core-util-is\');\n'
+    + 'util.inherits = require(\'inherits\');\n/*</replacement>*/\n'
+  ]
 ]
 
 // this test has some trouble with the nextTick depth when run

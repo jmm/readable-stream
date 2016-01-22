@@ -30,7 +30,12 @@ var assert = require('assert');
 var os = require('os');
 var child_process = require('child_process');
 var stream = require('../');
-var util = require('util');
+
+/*<replacement>*/
+var util = require('core-util-is');
+util.inherits = require('inherits');
+/*</replacement>*/
+
 
 var testRoot = path.resolve(process.env.NODE_TEST_DIR ||
                               path.dirname(__filename));
