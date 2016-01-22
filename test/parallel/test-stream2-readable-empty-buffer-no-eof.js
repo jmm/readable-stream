@@ -20,7 +20,8 @@ function test1() {
   // r.read(0) again later, otherwise there is no more work being done
   // and the process just exits.
 
-  var buf = Buffer(5).fill('x');
+  var buf = new Buffer(5);
+  buf.fill('x');
   var reads = 5;
   var timeout = common.platformTimeout(50);
   r._read = function(n) {

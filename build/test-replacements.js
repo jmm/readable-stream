@@ -228,5 +228,10 @@ module.exports['test-stream-pipe-cleanup-pause.js'] = [
 ]
 module.exports['test-stream2-readable-empty-buffer-no-eof.js'] = [[
   /let /g,
-  'var ']
+  'var '],
+  [
+    `var buf = Buffer(5).fill('x');`,
+    `var buf = new Buffer(5);
+  buf.fill('x');`
+  ]
 ]
