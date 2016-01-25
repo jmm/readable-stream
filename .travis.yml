@@ -30,7 +30,7 @@ matrix:
   - node_js: 5
     env: TASK=browser BROWSER_NAME=ie BROWSER_VERSION="9..latest"
   - node_js: 5
-    env: TASK=browser BROWSER_NAME=chrome BROWSER_VERSION="43..beta"
+    env: TASK=browser BROWSER_NAME=chrome BROWSER_VERSION="44..beta"
   - node_js: 5
     env: TASK=browser BROWSER_NAME=firefox BROWSER_VERSION="36..latest"
   - node_js: 5
